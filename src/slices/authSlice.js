@@ -2,12 +2,12 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const registerUser = createAsyncThunk('auth/register',async(userData)=>{
-    const response = await axios.post('http://localhost:5000/api/users/register',userData);
+    const response = await axios.post('https://job-backend-portal.onrender.com/api/users/register',userData);
     return response.data;
 });
 
 export const loginUser = createAsyncThunk('auth/login',async(userData)=>{
-    const response  = await axios.post('http://localhost:5000/api/users/login',userData);
+    const response  = await axios.post('https://job-backend-portal.onrender.com/api/users/login',userData);
     console.log(response.data);
     const result  = await response.data;
      console.log(result);
