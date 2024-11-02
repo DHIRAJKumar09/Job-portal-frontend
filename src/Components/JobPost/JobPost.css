@@ -1,0 +1,66 @@
+body {
+    font-family: 'Poppins', sans-serif;
+ 
+    margin: 0;
+    padding: 0;
+}
+
+.job-post-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.job-post-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.job-post-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.job-post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.job-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.job-textarea {
+    height: 150px;
+}
+
+.job-button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-button:hover {
+    background-color: #0056b3;
+}
+
+.job-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
