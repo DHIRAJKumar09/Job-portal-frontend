@@ -6,7 +6,7 @@ export const fetchJobs = createAsyncThunk(
   'jobs/fetchJobs',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/jobs/');
+      const response = await axios.get('https://job-backend-portal.onrender.com/api/jobs/');
       return response.data; // Assuming your API returns a list of jobs
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -19,7 +19,7 @@ export const createJob = createAsyncThunk(
   async (jobData, { rejectWithValue, getState }) => {
     const { auth } = getState(); // assuming auth has a token property
     try {
-      const response = await axios.post('http://localhost:5000/api/jobs', jobData, {
+      const response = await axios.post('https://job-backend-portal.onrender.com/api/jobs', jobData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },
@@ -37,7 +37,7 @@ export const updateJob = createAsyncThunk(
   'jobs/updateJob',
   async ({ id, jobData }, { rejectWithValue }) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/jobs/${id}`, jobData);
+      const response = await axios.put(`https://job-backend-portal.onrender.com/api/jobs/${id}`, jobData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -49,7 +49,7 @@ export const deleteJob = createAsyncThunk(
   'jobs/deleteJob',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+      await axios.delete(`https://job-backend-portal.onrender.com/api/jobs/${id}`);
       return id; // Return the id of the deleted job
     } catch (error) {
       return rejectWithValue(error.response.data);
