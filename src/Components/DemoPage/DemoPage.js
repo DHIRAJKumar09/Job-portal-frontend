@@ -7,108 +7,70 @@ import {
   Grid,
   Card,
   CardContent,
+  CardActions,
+  Avatar,
+  Stack,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import './DemoPage.css'
 
 const DemoPage = () => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate('/login'); // Navigate to the login page
-  };
+  const handleLogin = () => navigate('/login');
+  const handleSignup = () => navigate('/register');
 
-  const handleSignup = () => {
-    navigate('/register'); // Navigate to the signup page
-  };
-
-  // Sample feature data
   const features = [
-    {
-      id: 1,
-      title: 'Job Search',
-      description: 'Easily search for jobs based on your skills and preferences.',
-    },
-    {
-      id: 2,
-      title: 'Resume Builder',
-      description: 'Create a professional resume with our easy-to-use builder.',
-    },
-    {
-      id: 3,
-      title: 'Job Alerts',
-      description: 'Get notifications for new job postings that match your criteria.',
-    },
-    {
-      id: 4,
-      title: 'Company Reviews',
-      description: 'Read reviews from employees about companies before applying.',
-    },
+    { id: 1, title: 'Job Search', description: 'Search for jobs by skills and preferences.' },
+    { id: 2, title: 'Resume Builder', description: 'Create a professional resume easily.' },
+    { id: 3, title: 'Job Alerts', description: 'Get notifications for relevant job postings.' },
+    { id: 4, title: 'Company Reviews', description: 'Read reviews before applying.' },
   ];
 
-  // Sample premium benefits data
   const premiumBenefits = [
-    {
-      id: 1,
-      title: 'Profile Boost',
-      description: 'Get your profile highlighted to employers.',
-    },
-    {
-      id: 2,
-      title: 'Priority Support',
-      description: 'Receive priority customer support for your queries.',
-    },
-    {
-      id: 3,
-      title: 'Exclusive Job Listings',
-      description: 'Access job postings that are only available to premium members.',
-    },
-    {
-      id: 4,
-      title: 'Interview Coaching',
-      description: 'Get expert tips and coaching for your interviews.',
-    },
+    { id: 1, title: 'Profile Boost', description: 'Highlight your profile to employers.' },
+    { id: 2, title: 'Priority Support', description: 'Get faster responses to your queries.' },
+    { id: 3, title: 'Exclusive Listings', description: 'Access exclusive job postings.' },
+    { id: 4, title: 'Interview Coaching', description: 'Receive tips for successful interviews.' },
+  ];
+
+  const companies = [
+    { id: 1, name: 'TechCorp', location: 'San Francisco, CA' },
+    { id: 2, name: 'Innovate Solutions', location: 'Austin, TX' },
+    { id: 3, name: 'HealthPlus', location: 'New York, NY' },
+    { id: 4, name: 'Green Energy Inc.', location: 'Denver, CO' },
   ];
 
   return (
-    <Container maxWidth="lg" 
-       sx={{
-        paddingTop: { xs: '90rem', sm: '35rem', md: '40rem' }, // Adjust padding for smaller screens
-      }}
-     className="container">
-      <Container maxWidth="lg" className="container">
-      {/* Header Section with Clip Path */}
-      <Box sx={{
-          backgroundColor: '#3f51b5',
-          padding: '40px 0',
-          
-          position: 'relative',
-          zIndex: 1,
-        }}
-      >
-        <div className="header">
-          <Typography variant="h3" gutterBottom sx={{ color: 'white' }}>
-            Welcome to Our Job Portal
-          </Typography>
-          <Typography variant="h6" sx={{ color: 'white' }}>
-            Discover your dream job with us. Sign up now to unlock premium features!
-          </Typography>
-        </div>
+    <Container maxWidth="lg" sx={{
+      paddingTop: { xs: '160rem', sm: '35rem', md: '40rem' }, // Adjust padding for smaller screens
+    }} >
+      {/* Header Section */}
+      <Box textAlign="center" sx={{ bgcolor: '#3f51b5', color: 'white', py: 6, borderRadius: 1, mb: 4 }}>
+        <Typography variant="h3" gutterBottom>
+          Welcome to Our Job Portal
+        </Typography>
+        <Typography variant="h6" paragraph>
+          Discover your dream job. Sign up to access premium features!
+        </Typography>
+        <Button variant="contained" color="secondary" onClick={handleSignup} sx={{ mr: 2 }}>
+          Sign Up
+        </Button>
+        <Button variant="outlined" color="inherit" onClick={handleLogin}>
+          Login
+        </Button>
       </Box>
 
       {/* Features Section */}
-      <Typography variant="h4" className="features-section">
+      <Typography variant="h4" gutterBottom>
         Features
       </Typography>
       <Grid container spacing={4}>
         {features.map((feature) => (
           <Grid item xs={12} sm={6} md={3} key={feature.id}>
-            <Card className="card">
+            <Card>
               <CardContent>
-                <Typography variant="h5" className="card-title">
-                  {feature.title}
-                </Typography>
-                <Typography variant="body2" className="card-description">
+                <Typography variant="h5">{feature.title}</Typography>
+                <Typography variant="body2" color="textSecondary">
                   {feature.description}
                 </Typography>
               </CardContent>
@@ -118,30 +80,16 @@ const DemoPage = () => {
       </Grid>
 
       {/* Premium Benefits Section */}
-      <Typography variant="h4" className="premium-benefits-section">
+      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
         Premium Member Benefits
       </Typography>
       <Grid container spacing={4}>
         {premiumBenefits.map((benefit) => (
           <Grid item xs={12} sm={6} md={3} key={benefit.id}>
-            <Card className="card" sx={{ position: 'relative', overflow: 'hidden' }}>
-              <Box
-                sx={{
-                  clipPath: 'circle(50% at 50% 0)',
-                  backgroundColor: '#e3f2fd',
-                  position: 'absolute',
-                  top: '-50%',
-                  left: '0',
-                  right: '0',
-                  height: '200px',
-                  zIndex: 0,
-                }}
-              />
-              <CardContent sx={{ position: 'relative', zIndex: 1 }}>
-                <Typography variant="h5" className="card-title">
-                  {benefit.title}
-                </Typography>
-                <Typography variant="body2" className="card-description">
+            <Card>
+              <CardContent>
+                <Typography variant="h5">{benefit.title}</Typography>
+                <Typography variant="body2" color="textSecondary">
                   {benefit.description}
                 </Typography>
               </CardContent>
@@ -150,16 +98,32 @@ const DemoPage = () => {
         ))}
       </Grid>
 
-      {/* Login and Signup Buttons */}
-      <Box className="button-container">
-        <Button variant="contained" color="primary" onClick={handleLogin} sx={{ mr: 2 }}>
-          Login
-        </Button>
-        <Button variant="outlined" color="primary" onClick={handleSignup}>
-          Sign Up
-        </Button>
-      </Box>
-    </Container>
+      {/* Companies Section */}
+      <Typography variant="h4" gutterBottom sx={{ mt: 6 }}>
+        Featured Companies
+      </Typography>
+      <Grid container spacing={4}>
+        {companies.map((company) => (
+          <Grid item xs={12} sm={6} md={3} key={company.id}>
+            <Card>
+              <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Avatar sx={{ width: 56, height: 56, bgcolor: 'primary.main', mb: 2 }}>
+                  {company.name.charAt(0)}
+                </Avatar>
+                <Typography variant="h6">{company.name}</Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {company.location}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" color="primary" onClick={() => navigate(`/companies/${company.id}`)}>
+                  View Jobs
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };
