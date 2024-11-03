@@ -81,7 +81,7 @@ const DemoPage = () => {
       <Box sx={{
           backgroundColor: '#3f51b5',
           padding: '40px 0',
-          clipPath: 'polygon(0 0, 100% 0, 100% 70%, 0 100%)',
+          
           position: 'relative',
           zIndex: 1,
         }}
