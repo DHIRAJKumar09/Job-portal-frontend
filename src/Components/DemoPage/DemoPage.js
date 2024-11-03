@@ -73,7 +73,7 @@ const DemoPage = () => {
   return (
     <Container maxWidth="lg" 
        sx={{
-        paddingTop: { xs: '70rem', sm: '35rem', md: '40rem' }, // Adjust padding for smaller screens
+        paddingTop: { xs: '90rem', sm: '35rem', md: '40rem' }, // Adjust padding for smaller screens
       }}
      className="container">
       <Container maxWidth="lg" className="container">
