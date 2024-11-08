@@ -17,7 +17,6 @@ const Footer = () => {
   return (
     <Box
       sx={{
-<<<<<<< HEAD
         backgroundColor: '',
         backdropFilter:'blur(10px)',
         color: 'white',
@@ -36,46 +35,10 @@ const Footer = () => {
               Your one-stop solution for finding your dream job and posting your job openings.
             </Typography>
             <Button variant="contained" color="primary" sx={{ mt: 1 }}>
-=======
-        
-        backdropFilter: 'blur(10px)',
-        color: 'black',
-        fontWeight: 600,
-        py: 6,
-        mt: 6,
-        boxShadow: '0 -4px 8px rgba(0,0,0,0.2)',
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          {/* Job Portal Info Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5" gutterBottom sx={{ fontFamily: 'Poppins, sans-serif' }}>
-              Job Portal
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                fontFamily: 'Roboto, sans-serif',
-                lineHeight: 1.7,
-                opacity: 0.9,
-                color: '#f0f0f0',
-                mb: 2,
-              }}
-            >
-              Your one-stop solution for finding your dream job and posting job openings.
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ mt: 2, fontFamily: 'Poppins, sans-serif' }}
-            >
->>>>>>> 15dada6 (Initial commit after reinitializing repository)
               Post a Job
             </Button>
           </Grid>
 
-<<<<<<< HEAD
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="h6" gutterBottom>
               Quick Links
@@ -126,70 +89,12 @@ const Footer = () => {
               <IconButton color="inherit" href="https://instagram.com" target="_blank">
                 <InstagramIcon />
               </IconButton>
-=======
-          {/* Quick Links Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5" gutterBottom sx={{ fontFamily: 'Poppins, sans-serif' }}>
-              Quick Links
-            </Typography>
-            <ul style={{ listStyleType: 'none', padding: 0, lineHeight: 1.8 }}>
-              {['Home', 'Jobs', 'About Us', 'Contact Us', 'Privacy Policy'].map((text, index) => (
-                <li key={index}>
-                  <Link
-                    href={`/${text.toLowerCase().replace(/\s/g, '')}`}
-                    color="inherit"
-                    underline="hover"
-                    sx={{
-                      fontFamily: 'Roboto, sans-serif',
-                      color: '#f0f0f0',
-                      '&:hover': { color: '#cfe0ff' },
-                    }}
-                  >
-                    {text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Grid>
-
-          {/* Social Media Section */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Typography variant="h5" gutterBottom sx={{ fontFamily: 'Poppins, sans-serif' }}>
-              Follow Us
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2, mt: 1 }}>
-              {[
-                { href: 'https://facebook.com', icon: <FacebookIcon /> },
-                { href: 'https://twitter.com', icon: <TwitterIcon /> },
-                { href: 'https://linkedin.com', icon: <LinkedInIcon /> },
-                { href: 'https://instagram.com', icon: <InstagramIcon /> },
-              ].map((social, index) => (
-                <IconButton
-                  key={index}
-                  color="inherit"
-                  href={social.href}
-                  target="_blank"
-                  sx={{
-                    color: '#f0f0f0',
-                    '&:hover': { color: '#cfe0ff' },
-                  }}
-                >
-                  {social.icon}
-                </IconButton>
-              ))}
->>>>>>> 15dada6 (Initial commit after reinitializing repository)
             </Box>
           </Grid>
         </Grid>
 
-<<<<<<< HEAD
         <Box sx={{ textAlign: 'center', mt: 4 }}>
           <Typography variant="body2">
-=======
-        {/* Copyright Section */}
-        <Box sx={{ textAlign: 'center', mt: 4, pt: 2, borderTop: '1px solid rgba(255,255,255,0.2)' }}>
-          <Typography variant="body2" sx={{ color: '#e0e0e0', fontFamily: 'Roboto, sans-serif' }}>
->>>>>>> 15dada6 (Initial commit after reinitializing repository)
             © {new Date().getFullYear()} Job Portal. All Rights Reserved.
           </Typography>
         </Box>
