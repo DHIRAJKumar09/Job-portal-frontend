@@ -58,9 +58,37 @@ const DemoPage = () => {
       logo: "https://img.freepik.com/free-vector/green-alternative-energy-power-logo_126523-2775.jpg",
     },
   ];
-
+  const successStories = [
+    {
+      id: 1,
+      name: "Alice Johnson",
+      role: "Software Engineer",
+      company: "TechCorp",
+      package: "$120,000",
+      image: "https://www.shutterstock.com/image-photo/portrait-beautiful-mid-adult-woman-260nw-1825812638.jpg",
+      quote: "Landing my dream job was easier than I imagined!",
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      role: "Data Scientist",
+      company: "HealthPlus",
+      package: "$110,000",
+      image: "https://cdn.pixabay.com/photo/2024/05/05/19/33/man-8741800_1280.jpg",
+      quote: "This portal connected me to amazing opportunities!",
+    },
+    {
+      id: 3,
+      name: "Jane Doe",
+      role: "Product Manager",
+      company: "Innovate Solutions",
+      package: "$130,000",
+      image: "https://cdn.pixabay.com/photo/2021/01/12/08/36/woman-5911309_1280.jpg",
+      quote: "I secured my role at a top company with ease!",
+    },
+  ];
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: { xs: "120px", sm: "80px", md: "1160px" } }}>
+    <Container maxWidth="lg" sx={{ paddingTop: { xs: "3500px", sm: "2200px", md: "1200px" } }}>
       {/* Header Section */}
       <Box
         textAlign="center"
@@ -152,6 +180,88 @@ const DemoPage = () => {
           </Grid>
         ))}
       </Grid>
+
+            {/* Success Stories Section */}
+            <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          fontFamily: "Poppins, sans-serif",
+          textAlign: "center",
+          color: "#3f51b5",
+          fontWeight: "bold",
+          textTransform: "uppercase",
+          letterSpacing: 1.5,
+          pb: 2,
+          "&:after": {
+            content: '""',
+            display: "block",
+            width: "50px",
+            height: "4px",
+            backgroundColor: "#3f51b5",
+            margin: "8px auto 0 auto",
+            borderRadius: 2,
+          },
+        }}
+      >
+        Success Stories
+      </Typography>
+      <Grid container spacing={4}>
+        {successStories.map((story) => (
+          <Grid item xs={12} sm={6} md={4} key={story.id} sx={{ display: "flex" }}>
+            <motion.div whileHover={{ scale: 1.05 }} style={{ width: "100%" }}>
+              <Card
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "100%", // Ensures cards take up equal height
+                  boxShadow: 4,
+                  borderRadius: 3,
+                  p: 3,
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  background: "linear-gradient(145deg, #f3f4f6 0%, #ffffff 100%)",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: 6,
+                  },
+                }}
+              >
+                <CardContent sx={{ flexGrow: 1, textAlign: "center" }}>
+                  <Avatar
+                    src={story.image}
+                    alt={story.name}
+                    sx={{ width: 80, height: 80, borderRadius: "50%", mb: 2, boxShadow: 2 }}
+                  />
+                  <Typography variant="h6" color="primary" sx={{ fontWeight: 700 }}>
+                    {story.name}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" sx={{ color: "#666" }}>
+                    {story.role} at {story.company}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" sx={{ fontWeight: 500, color: "#3f51b5", mt: 1 }}>
+                    Package: {story.package}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      mt: 2,
+                      fontStyle: "italic",
+                      fontFamily: "Roboto, sans-serif",
+                      color: "#666",
+                    }}
+                  >
+                    "{story.quote}"
+                  </Typography>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </Grid>
+        ))}
+      </Grid>
+
+
+      
 
       {/* Companies Hiring Section */}
       <Typography
