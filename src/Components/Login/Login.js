@@ -32,25 +32,21 @@ const Login = () => {
                 setLoading(false);
                 if (response.payload.success) {
                     toast.success('Hurray! Login successful! 🎉');
-                    
+
                     const role = response.payload.role;
                     // Navigate based on user role
                     if (role === 'employer') {
-                        console.log(role);
                         navigate('/employer/dashboard');  // Redirect employer to job posting page
                     } else if (role === 'job-seeker') {
-                        console.log(role);
                         navigate('/home');  // Redirect job-seeker to home or another relevant page
                     }
                 } else {
                     toast.error('Login failed. Please check your credentials.');
-                    console.error('Login failed:', response.payload.message);
                 }
             })
             .catch((error) => {
                 setLoading(false);
                 toast.error('Login failed. Please try again.');
-                console.error('Error occurred during login:', error);
             });
     };
 
@@ -85,6 +81,15 @@ const Login = () => {
                         {loading ? <CircularProgress size={24} /> : 'Login'}
                     </Button>
                 </form>
+
+                <div className="auth-links">
+                    <p>
+                        Don't have an account? <a href="/signup" className="auth-link">Create Account</a>
+                    </p>
+                    <p>
+                        <a href="/forgot-password" className="auth-link">Forgot Password?</a>
+                    </p>
+                </div>
             </div>
         </div>
     );
