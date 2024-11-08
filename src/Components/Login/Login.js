@@ -32,6 +32,7 @@ const Login = () => {
                 setLoading(false);
                 if (response.payload.success) {
                     toast.success('Hurray! Login successful! 🎉');
+<<<<<<< HEAD
                     
                     const role = response.payload.role;
                     // Navigate based on user role
@@ -40,17 +41,31 @@ const Login = () => {
                         navigate('/employer/dashboard');  // Redirect employer to job posting page
                     } else if (role === 'job-seeker') {
                         console.log(role);
+=======
+
+                    const role = response.payload.role;
+                    // Navigate based on user role
+                    if (role === 'employer') {
+                        navigate('/employer/dashboard');  // Redirect employer to job posting page
+                    } else if (role === 'job-seeker') {
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
                         navigate('/home');  // Redirect job-seeker to home or another relevant page
                     }
                 } else {
                     toast.error('Login failed. Please check your credentials.');
+<<<<<<< HEAD
                     console.error('Login failed:', response.payload.message);
+=======
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
                 }
             })
             .catch((error) => {
                 setLoading(false);
                 toast.error('Login failed. Please try again.');
+<<<<<<< HEAD
                 console.error('Error occurred during login:', error);
+=======
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
             });
     };
 
@@ -75,7 +90,10 @@ const Login = () => {
                         required
                         className="auth-input"
                     />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
                     <Button
                         variant="contained"
                         color="primary"
@@ -86,6 +104,18 @@ const Login = () => {
                         {loading ? <CircularProgress size={24} /> : 'Login'}
                     </Button>
                 </form>
+<<<<<<< HEAD
+=======
+
+                <div className="auth-links">
+                    <p>
+                        Don't have an account? <a href="/register" className="auth-link">Create Account</a>
+                    </p>
+                    <p>
+                        <a href="/forgot-password" className="auth-link">Forgot Password?</a>
+                    </p>
+                </div>
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
             </div>
         </div>
     );

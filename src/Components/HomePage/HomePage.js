@@ -66,7 +66,11 @@ const HomePage = () => {
       {/* Hero Section */}
       <Paper
         sx={{
+<<<<<<< HEAD
           backgroundImage: 'url("https://peepingmoon-cdn.sgp1.digitaloceanspaces.com/engpeepingmoon/120724073522-6690dcba6cdb0kanguva-(1).jpg")',
+=======
+          backgroundImage: 'url("https://cdn.pixabay.com/photo/2021/09/18/23/55/work-from-home-6636480_1280.png")',
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
           position: 'relative', // Important for overlay
          // Replace with your image URL
           backgroundSize: 'cover',
@@ -224,4 +228,8 @@ const HomePage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default HomePage;
+=======
+export default HomePage;
+>>>>>>> 15dada6 (Initial commit after reinitializing repository)
