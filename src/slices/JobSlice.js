@@ -19,7 +19,7 @@ export const createJob = createAsyncThunk(
   async (jobData, { rejectWithValue, getState }) => {
     const { auth } = getState(); // assuming auth has a token property
     try {
-      const response = await axios.post('https://job-backend-portal.onrender.com/api/jobs', jobData, {
+      const response = await axios.post('https://job-backend-portal.onrender.com/api/jobs/', jobData, {
         headers: {
           Authorization: `Bearer ${auth.token}`,
         },

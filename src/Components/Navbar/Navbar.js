@@ -1,30 +1,27 @@
 import React, { useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import PeopleIcon from "@mui/icons-material/People";
-import SettingsIcon from "@mui/icons-material/Settings";
-import BusinessIcon from "@mui/icons-material/Business";
-import PostAddIcon from "@mui/icons-material/PostAdd";
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import WorkIcon from "@mui/icons-material/Work";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Box, Drawer, List, ListItem, ListItemText, Menu, MenuItem } from "@mui/material";
+import {
+  AppBar, Toolbar, Typography, IconButton, Box, Drawer,
+  List, ListItem, ListItemText, Menu, MenuItem, Badge,
+} from "@mui/material";
+import {
+  Dashboard as DashboardIcon, People as PeopleIcon, Settings as SettingsIcon,
+  Business as BusinessIcon, PostAdd as PostAddIcon, Bookmarks as BookmarksIcon,
+  Menu as MenuIcon, Home as HomeIcon, Work as WorkIcon, AccountCircle,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../slices/authSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userRole = useSelector((state) => state.auth.role);
+  const token = useSelector((state) => state.auth.token);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const dispatch = useDispatch();
-  const userRole = useSelector((state) => state.auth.role); // Get user role from Redux
-  const token = useSelector((state) => state.auth.token); // Get token from Redux
+
+  const newJobsCount = 3; // Example count of new jobs
+  const appliedJobsCount = 5; // Example count of applied jobs
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -33,32 +30,36 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleProfileMenuClose = () => {
-    setAnchorEl(null);
-  };
-
+  const handleProfileMenuOpen = (event) => setAnchorEl(event.currentTarget);
+  const handleProfileMenuClose = () => setAnchorEl(null);
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/"); // Redirect to login page after logout
+    navigate("/");
   };
 
   const renderJobSeekerMenu = () => (
     <>
       <IconButton color="inherit" onClick={() => navigate("/jobseeker/dashboard")}>
-        <HomeIcon />
+        <Badge color="secondary" badgeContent={newJobsCount}>
+          <HomeIcon />
+        </Badge>
+        <Typography variant="caption">Home</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/jobseeker/job-listings")}>
-        <WorkIcon />
+        <Badge color="secondary" badgeContent={newJobsCount}>
+          <WorkIcon />
+        </Badge>
+        <Typography variant="caption">Jobs</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/jobseeker/applied-jobs")}>
-        <BookmarksIcon />
+        <Badge color="primary" badgeContent={appliedJobsCount}>
+          <BookmarksIcon />
+        </Badge>
+        <Typography variant="caption">Applied Jobs</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={handleProfileMenuOpen}>
         <AccountCircle />
+        <Typography variant="caption">Profile</Typography>
       </IconButton>
     </>
   );
@@ -67,24 +68,33 @@ const Navbar = () => {
     <>
       <IconButton color="inherit" onClick={() => navigate("/employer/dashboard")}>
         <DashboardIcon />
+        <Typography variant="caption">Dashboard</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/employer/jobs")}>
-        <WorkIcon />
+        <Badge color="secondary" badgeContent={newJobsCount}>
+          <WorkIcon />
+        </Badge>
+        <Typography variant="caption">My Jobs</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/employer/applicants")}>
         <PeopleIcon />
+        <Typography variant="caption">Applicants</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/employer/settings/account")}>
         <SettingsIcon />
+        <Typography variant="caption">Settings</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/employer/post-job")}>
         <PostAddIcon />
+        <Typography variant="caption">Post Job</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={() => navigate("/employer/company-profile")}>
         <BusinessIcon />
+        <Typography variant="caption">Profile</Typography>
       </IconButton>
       <IconButton color="inherit" onClick={handleProfileMenuOpen}>
         <AccountCircle />
+        <Typography variant="caption">Profile</Typography>
       </IconButton>
     </>
   );
@@ -103,14 +113,8 @@ const Navbar = () => {
           {token && (userRole === "job-seeker" ? renderJobSeekerMenu() : renderEmployerMenu())}
         </Toolbar>
       </AppBar>
-      {/* Drawer for mobile view */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
+        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
           <List>
             <ListItem button onClick={() => navigate("/")}>
               <ListItemText primary="Home" />
@@ -144,7 +148,6 @@ const Navbar = () => {
           </List>
         </Box>
       </Drawer>
-      {/* Profile Dropdown Menu */}
       {token && (
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleProfileMenuClose}>
           <MenuItem onClick={() => navigate("/jobseeker/profile")}>Profile</MenuItem>
@@ -153,7 +156,6 @@ const Navbar = () => {
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       )}
-      {/* Spacer to prevent content from being hidden behind the fixed navbar */}
       <Box sx={{ height: "64px" }} />
     </>
   );

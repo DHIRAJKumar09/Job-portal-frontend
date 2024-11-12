@@ -1,87 +1,147 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { createJob } from '../../slices/JobSlice'; // Adjust the import path as needed
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { Button, TextField, MenuItem, Select, Typography, Box, CircularProgress } from '@mui/material';
+import { createJob } from '../../slices/JobSlice';
+import './JobPost.css';
 
 const JobPostForm = () => {
-  const dispatch = useDispatch();
-  const [jobData, setJobData] = useState({
-    title: '',
-    company: '',
-    description: '',
-    location: '',
-    // postedBy will be set from user state or props if needed
-  });
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setJobData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // Check if all required fields are filled before dispatching
-      if (!jobData.title || !jobData.company || !jobData.description || !jobData.location) {
-        toast.warning('Please fill in all required fields.');
-        return;
-      }
-
-      // Optionally, you can add postedBy here if you know it
-      await dispatch(createJob(jobData)); // Dispatch the create job action
-       toast.success('Job posted successfully!');
-      setJobData({
+    const [formData, setFormData] = useState({
         title: '',
         company: '',
         description: '',
+        salary: '',
         location: '',
-      }); // Reset the form after successful submission
-    } catch (error) {
-      console.error('Failed to post job:', error);
-      toast.error('Failed to post job. Check console for details.');
-    }
-  };
+        category: '',
+    });
+    const [loading, setLoading] = useState(false);
 
-  return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-      <TextField
-        label="Job Title"
-        name="title"
-        value={jobData.title}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        label="Company Name"
-        name="company"
-        value={jobData.company}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        label="Job Description"
-        name="description"
-        value={jobData.description}
-        onChange={handleChange}
-        required
-        multiline
-        rows={4}
-      />
-      <TextField
-        label="Location"
-        name="location"
-        value={jobData.location}
-        onChange={handleChange}
-        required
-      />
-      <Button type="submit" variant="contained">Post Job</Button>
-    </Box>
-  );
+    // Handle input change
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (Object.values(formData).some(field => field === '')) {
+            toast.error('Please fill in all fields');
+            return;
+        }
+
+        setLoading(true);
+
+        // Dispatch the action to create a job post
+        dispatch(createJob(formData))
+            .then((response) => {
+                setLoading(false);
+                if (response.payload && response.payload.success) {
+                    toast.success('Job post created successfully! 🎉');
+                    navigate('/');
+                } else {
+                    toast.error(response.payload?.message || 'Failed to create the job post. Please try again.');
+                }
+            })
+            .catch((error) => {
+                setLoading(false);
+                toast.error('Something went wrong. Please try again.');
+                console.error('Error creating job post:', error);
+            });
+    };
+
+    return (
+        <Box className="job-post-container" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+            <Box className="job-post-card" sx={{ maxWidth: 600, width: '100%', padding: 4, boxShadow: 3, borderRadius: 2 }}>
+                <Typography variant="h4" gutterBottom align="center" color="primary">
+                    Post a New Job
+                </Typography>
+                <form onSubmit={handleSubmit}>
+                    <TextField
+                        label="Job Title"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Job Description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        multiline
+                        rows={4}
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Salary"
+                        name="salary"
+                        type="number"
+                        value={formData.salary}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        margin="normal"
+                    />
+                    <Box mt={2}>
+                        <Select
+                            name="category"
+                            value={formData.category}
+                            onChange={handleChange}
+                            fullWidth
+                            required
+                            displayEmpty
+                            renderValue={(selected) => (selected ? selected : 'Select Category')}
+                        >
+                            <MenuItem value="IT">IT</MenuItem>
+                            <MenuItem value="Health">Health</MenuItem>
+                            <MenuItem value="Marketing">Marketing</MenuItem>
+                            <MenuItem value="Finance">Finance</MenuItem>
+                            <MenuItem value="Design">Design</MenuItem>
+                        </Select>
+                    </Box>
+                    <Box mt={2} display="flex" justifyContent="center">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            disabled={loading}
+                            startIcon={loading && <CircularProgress size={20} color="inherit" />}
+                        >
+                            {loading ? 'Posting...' : 'Post Job'}
+                        </Button>
+                    </Box>
+                </form>
+            </Box>
+        </Box>
+    );
 };
 
 export default JobPostForm;

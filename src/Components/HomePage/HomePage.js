@@ -17,6 +17,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TestimonialSection from './TestimonialSection';
 import Footer from './FooterSection';
+import JobApplicationStats from '../JobSeeker/JobApplicationsStats';
+import ApplicationStatsChart from '../JobSeeker/ApplicationStatsCharts';
+import ApplicationStats from '../JobSeeker/ApplicationStatsCharts';
 
 // Sample job data
 const featuredJobs = [
@@ -60,9 +63,10 @@ const HomePage = () => {
       maxWidth="lg"
       
       sx={{
-        paddingTop: { xs: '240rem', sm: '160rem', md: '100rem' }, // Adjust padding for smaller screens
+        paddingTop: { xs: '240rem', sm: '160rem', md: '80rem' }, // Adjust padding for smaller screens
       }}
     >
+         <ApplicationStats/>
       {/* Hero Section */}
       <Paper
         sx={{
@@ -101,8 +105,11 @@ const HomePage = () => {
         </Typography>
       </Paper>
 
+
+      {/* <JobApplicationStats/> */}
+
       {/* Search Bar and Post a Job Button */}
-      <Box
+      {/* <Box
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' }, // Stack items vertically on small screens
@@ -128,7 +135,7 @@ const HomePage = () => {
         </Button>
       </Box>
 
-      {/* Job Categories */}
+      Job Categories */}
       <Box sx={{ mb: 4 }}>
         <Typography variant="h6" gutterBottom>
           Job Categories
@@ -145,6 +152,10 @@ const HomePage = () => {
           )}
         </Grid>
       </Box>
+    
+ 
+     
+     
 
       {/* Featured Jobs */}
       <Typography variant="h5" sx={{ mb: 2 }}>
