@@ -57,7 +57,7 @@ const JobListing = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      const appliedJobsResponse = await axios.get('https://job-backend-portal.onrender.com/applications/applied-job', {
+      const appliedJobsResponse = await axios.get('https://job-backend-portal.onrender.com/api/applications/applied-job', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
