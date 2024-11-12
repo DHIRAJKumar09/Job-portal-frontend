@@ -31,7 +31,7 @@ const JobListing = () => {
 
   const fetchJobs = async (currentPage = 1) => {
     try {
-        const response = await axios.get('http://localhost:5000/api/jobs/search', {
+        const response = await axios.get('https://job-backend-portal.onrender.com/api/jobs/search', {
             params: {
                 keywords: searchTerm,
                 location,
@@ -52,12 +52,12 @@ const JobListing = () => {
 
   const fetchJobsData = async () => {
     try {
-      const newJobsResponse = await axios.get('http://localhost:5000/api/applications/new-jobs', {
+      const newJobsResponse = await axios.get('https://job-backend-portal.onrender.com/api/applications/new-jobs', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      const appliedJobsResponse = await axios.get('http://localhost:5000/api/applications/applied-job', {
+      const appliedJobsResponse = await axios.get('https://job-backend-portal.onrender.com/applications/applied-job', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -96,7 +96,7 @@ const JobListing = () => {
         return;
       }
       const response = await axios.post(
-        `http://localhost:5000/api/jobs/apply/${jobId}`,
+        `https://job-backend-portal.onrender.com/api/jobs/apply/${jobId}`,
         {},
         {
           headers: {
