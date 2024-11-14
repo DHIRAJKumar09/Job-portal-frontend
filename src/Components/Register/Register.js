@@ -70,14 +70,14 @@ const Register = () => {
                             onClick={() => setRole('job-seeker')}
                             className={`role-button ${role === 'job-seeker' ? 'active' : ''}`}
                         >
-                            Job Seeker
+                            I'm looking for job
                         </button>
                         <button
                             type="button"
                             onClick={() => setRole('employer')}
                             className={`role-button ${role === 'employer' ? 'active' : ''}`}
                         >
-                            Employer
+                            I'm looking to hire
                         </button>
                     </div>
 
