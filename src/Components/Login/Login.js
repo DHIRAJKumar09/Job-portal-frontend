@@ -84,7 +84,7 @@ const Login = () => {
 
                 <div className="auth-links">
                     <p>
-                        Don't have an account? <a href="/signup" className="auth-link">Create Account</a>
+                        Don't have an account? <a href="/register" className="auth-link">Create Account</a>
                     </p>
                     <p>
                         <a href="/forgot-password" className="auth-link">Forgot Password?</a>
