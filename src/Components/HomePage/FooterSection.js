@@ -17,7 +17,9 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        backgroundColor: '',
+           bgcolor: "#3f51b5"
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)"
         backdropFilter:'blur(10px)',
         color: 'white',
         fontWeight:'600',
