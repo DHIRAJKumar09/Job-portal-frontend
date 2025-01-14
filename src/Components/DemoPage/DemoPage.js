@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import video1 from "../../assets/Hello.mp4";
 import video2 from "../../assets/video Mobile Video.mp4";
-import { Home } from "@mui/icons-material";
+
 import {
   WorkOutline,
   Business,
@@ -26,7 +26,7 @@ import {
   Engineering,
   Assessment,
 } from "@mui/icons-material";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+
 
 const categories = [
   { icon: <WorkOutline fontSize="small" />, title: "Remote" },
