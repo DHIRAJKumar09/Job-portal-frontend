@@ -14,7 +14,7 @@ import Login from './Components/Login/Login';
 import DemoPage from './Components/DemoPage/DemoPage';
 import EmployerLayout from './Components/JobPost/EmployerLayout';
 import JobSeekerLayout from './Components/JobSeeker/JobSeekerLayout';
-import Details1 from './Components/DemoPage/Details1';
+
 
 // PrivateRoute Component for Protected Routes
 function PrivateRoute({ children, requiredRole }) {
