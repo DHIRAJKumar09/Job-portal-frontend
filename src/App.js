@@ -14,6 +14,7 @@ import Login from './Components/Login/Login';
 import DemoPage from './Components/DemoPage/DemoPage';
 import EmployerLayout from './Components/JobPost/EmployerLayout';
 import JobSeekerLayout from './Components/JobSeeker/JobSeekerLayout';
+import Details1 from './Components/DemoPage/Details1';
 
 // PrivateRoute Component for Protected Routes
 function PrivateRoute({ children, requiredRole }) {
@@ -38,7 +39,7 @@ function RestrictedDemoPage() {
     return <Navigate to={dashboardPath} replace />;
   }
 
-  return <DemoPage />;
+  return <DemoPage/>;
 }
 
 // PublicRoute Component to protect Login/Register for logged-in users
