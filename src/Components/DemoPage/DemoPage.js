@@ -4,13 +4,43 @@ import {
   Typography,
   Button,
   Box,
+  Paper,
   Grid,
   Card,
   CardContent,
-  Avatar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"; // For additional animation effects
+import video1 from "../../assets/Hello.mp4";
+import video2 from "../../assets/video Mobile Video.mp4";
+import { Home } from "@mui/icons-material";
+import {
+  WorkOutline,
+  Business,
+  Campaign,
+  RocketLaunch,
+  School,
+  BarChart,
+  EmojiObjects,
+  Code,
+  StarOutline,
+  Engineering,
+  Assessment,
+} from "@mui/icons-material";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+
+const categories = [
+  { icon: <WorkOutline fontSize="small" />, title: "Remote" },
+  { icon: <Business fontSize="small" />, title: "MNC" },
+  { icon: <Campaign fontSize="small" />, title: "Marketing" },
+  { icon: <RocketLaunch fontSize="small" />, title: "Startup" },
+  { icon: <School fontSize="small" />, title: "Fresher" },
+  { icon: <BarChart fontSize="small" />, title: "Analytics" },
+  { icon: <EmojiObjects fontSize="small" />, title: "Internship" },
+  { icon: <Code fontSize="small" />, title: "Software & IT" },
+  { icon: <StarOutline fontSize="small" />, title: "Fortune 500" },
+  { icon: <Engineering fontSize="small" />, title: "Engineering" },
+  { icon: <Assessment fontSize="small" />, title: "Project Mgmt" },
+];
 
 const DemoPage = () => {
   const navigate = useNavigate();
@@ -18,315 +48,230 @@ const DemoPage = () => {
   const handleLogin = () => navigate("/login");
   const handleSignup = () => navigate("/register");
 
-  const features = [
-    { id: 1, title: "Job Search", description: "Search jobs by skills and location." },
-    { id: 2, title: "Resume Builder", description: "Create a professional resume easily." },
-    { id: 3, title: "Job Alerts", description: "Receive instant job notifications." },
-    { id: 4, title: "Company Reviews", description: "Read honest company reviews." },
-  ];
-
-  const premiumBenefits = [
-    { id: 1, title: "Profile Boost", description: "Highlight your profile to employers." },
-    { id: 2, title: "Priority Support", description: "Get faster responses." },
-    { id: 3, title: "Exclusive Listings", description: "Access exclusive job postings." },
-    { id: 4, title: "Interview Coaching", description: "Tips for successful interviews." },
-  ];
-
-  const companies = [
-    {
-      id: 1,
-      name: "TechCorp",
-      location: "San Francisco, CA",
-      logo: "https://static.wixstatic.com/media/a63e3e_dca64f0891184cb1b744311e7797f793~mv2.png",
-    },
-    {
-      id: 2,
-      name: "Innovate Solutions",
-      location: "Austin, TX",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_SxasH4gH3poERmje5sYn7SJw7qdfWKewcg&s",
-    },
-    {
-      id: 3,
-      name: "HealthPlus",
-      location: "New York, NY",
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRvPgMQ7OFPECZYhHkmRhirLI0v9t5X4KApw&s",
-    },
-    {
-      id: 4,
-      name: "Green Energy Inc.",
-      location: "Denver, CO",
-      logo: "https://img.freepik.com/free-vector/green-alternative-energy-power-logo_126523-2775.jpg",
-    },
-  ];
-  const successStories = [
-    {
-      id: 1,
-      name: "Alice Johnson",
-      role: "Software Engineer",
-      company: "TechCorp",
-      package: "$120,000",
-      image: "https://www.shutterstock.com/image-photo/portrait-beautiful-mid-adult-woman-260nw-1825812638.jpg",
-      quote: "Landing my dream job was easier than I imagined!",
-    },
-    {
-      id: 2,
-      name: "Bob Smith",
-      role: "Data Scientist",
-      company: "HealthPlus",
-      package: "$110,000",
-      image: "https://cdn.pixabay.com/photo/2024/05/05/19/33/man-8741800_1280.jpg",
-      quote: "This portal connected me to amazing opportunities!",
-    },
-    {
-      id: 3,
-      name: "Jane Doe",
-      role: "Product Manager",
-      company: "Innovate Solutions",
-      package: "$130,000",
-      image: "https://cdn.pixabay.com/photo/2021/01/12/08/36/woman-5911309_1280.jpg",
-      quote: "I secured my role at a top company with ease!",
-    },
-  ];
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: { xs: "3500px", sm: "2200px", md: "1200px" } }}>
-      {/* Header Section */}
+    <Container
+      maxWidth="lg"
+      sx={{ paddingTop: { xs: "96rem", md: "80rem" } }}
+      disableGutters
+    >
+      {/* Hero Section */}
       <Box
-        textAlign="center"
         sx={{
-          bgcolor: "#3f51b5",
-          color: "white",
-          py: 6,
-          borderRadius: 1,
-          fontWeight: "900",
-          fontSize: "4rem",
-          mb: 4,
-          boxShadow: 3,
-          color: "white",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+          position: "relative",
+          width: "100%",
+          height: "100vh", // Fullscreen height
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
         }}
       >
-        <Typography variant="h3" gutterBottom style={{ fontFamily: "Lobster, cursive" }}>
-          Discover Your Dream Job
-        </Typography>
-        <Typography variant="h6" paragraph style={{ fontFamily: "Poppins, sans-serif" }}>
-          Join our platform to unlock exclusive career opportunities.
-        </Typography>
-        <Button variant="contained" color="secondary" onClick={handleSignup} sx={{ mr: 2 }}>
-          Sign Up
-        </Button>
-        <Button variant="outlined" color="inherit" onClick={handleLogin}>
-          Login
-        </Button>
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        >
+          <source src={video1} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Overlay Content */}
+        <Box
+          sx={{
+            textAlign: "center",
+            color: "white",
+            zIndex: 2,
+            textShadow: "2px 2px 8px rgba(0, 0, 0, 0.7)",
+            fontFamily: "'Nunito', sans-serif", // Apply Nunito font here
+          }}
+        >
+          <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold" }}>
+            Find your dream job now 5 lakh+ jobs for you to explore
+          </Typography>
+          <Typography variant="h6" paragraph sx={{ mb: 4, fontSize: "1.2rem" }}>
+            Join our platform to unlock exclusive career opportunities.
+          </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleSignup}
+            sx={{ mr: 2, fontFamily: "'Roboto', sans-serif" }}
+          >
+            Sign Up
+          </Button>
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={handleLogin}
+            sx={{ fontFamily: "'Roboto', sans-serif" }}
+          >
+            Login
+          </Button>
+        </Box>
       </Box>
 
-      {/* Features Section */}
-      <Typography
-        variant="h4"
-        gutterBottom
-        sx={{
-          fontFamily: "Poppins, sans-serif",
-          textAlign: "center",
-          color: "#3f51b5",
-          fontWeight: "bold",
-          textTransform: "uppercase",
-          letterSpacing: 1.5,
-          pb: 2,
-          "&:after": {
-            content: '""',
-            display: "block",
-            width: "50px",
-            height: "4px",
-            backgroundColor: "#3f51b5",
-            margin: "8px auto 0 auto",
-            borderRadius: 2,
-          },
-        }}
-      >
-        Features
-      </Typography>
+      {/* Main Content Section */}
+      <Box sx={{ py: 5, px: 3 }}>
+        <Paper
+          elevation={3}
+          sx={{ mb: 4, padding: 3, fontFamily: "'Nunito', sans-serif" }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <video
+                autoPlay
+                loop
+                muted
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: 4,
+                }}
+              >
+                <source src={video2} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </Grid>
+            <Grid item xs={4}>
+              <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
+                Welcome to the Premium Section
+              </Typography>
+              <Typography variant="body1">
+                Explore exclusive features by upgrading your account.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Paper>
 
-      <Grid container spacing={4}>
-        {features.map((feature) => (
-          <Grid item xs={12} sm={6} md={3} key={feature.id} sx={{ display: "flex" }}>
-            <motion.div whileHover={{ scale: 1.05 }} style={{ width: "100%" }}>
+        {/* Additional Sections */}
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            mb: 3,
+            fontFamily: "'Roboto', sans-serif",
+          }}
+        >
+          Why Choose Us?
+        </Typography>
+        <Grid container spacing={3}>
+          {[
+            { title: "Job Search", image: "https://cdn.pixabay.com/photo/2020/02/07/14/22/dream-4827288_1280.jpg" },
+            {
+              title: "Resume Builder",
+              image: "https://media.geeksforgeeks.org/wp-content/uploads/20220526181637/ResumeBuildingResourcesandTips.png",
+            },
+            { title: "Job Alerts", image: "https://cdn.pixabay.com/photo/2017/07/25/22/54/lego-2539844_1280.jpg" },
+            {
+              title: "Company Reviews",
+              image: "https://cdn.pixabay.com/photo/2018/09/14/14/31/feedback-3677258_1280.jpg",
+            },
+          ].map((feature) => (
+            <Grid item xs={12} sm={6} md={3} key={feature.title}>
               <Card
                 sx={{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100%", // Ensures cards take up equal height
-                  boxShadow: 4,
-                  borderRadius: 3,
-                  p: 3,
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  background: "linear-gradient(145deg, #f3f4f6 0%, #ffffff 100%)",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: 6,
-                  },
+                  height: "100%",
                 }}
               >
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography variant="h5" color="primary" sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, mb: 1 }}>
+                {/* Image at the Top */}
+                <Box
+                  sx={{
+                    height: "250px", // Adjust height as needed
+                    backgroundImage: `url(${feature.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    position:'relative',
+                    borderRadius: "4px 4px 0 0", // Rounded top corners
+                  }}
+                />
+                <CardContent
+                  sx={{
+                    textAlign: "center",
+                    fontFamily: "'Nunito', sans-serif",
+                    position:"absolute",
+                  }}
+                >
+                  <Typography variant="h6" sx={{ mb: 1 }}>
                     {feature.title}
                   </Typography>
-                  <Typography variant="body1" color="textSecondary" sx={{ fontSize: "1rem", color: "#666", fontFamily: "Roboto, sans-serif", lineHeight: 1.6 }}>
-                    {feature.description}
+                  <Typography variant="body2" color="text.secondary">
+                    {`Learn more about ${feature.title.toLowerCase()}.`}
                   </Typography>
                 </CardContent>
               </Card>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-
-            {/* Success Stories Section */}
-            <Typography
-        variant="h4"
-        gutterBottom
-        sx={{
-          fontFamily: "Poppins, sans-serif",
-          textAlign: "center",
-          color: "#3f51b5",
-          fontWeight: "bold",
-          textTransform: "uppercase",
-          letterSpacing: 1.5,
-          pb: 2,
-          "&:after": {
-            content: '""',
-            display: "block",
-            width: "50px",
-            height: "4px",
-            backgroundColor: "#3f51b5",
-            margin: "8px auto 0 auto",
-            borderRadius: 2,
-          },
-        }}
-      >
-        Success Stories
-      </Typography>
-      <Grid container spacing={4}>
-        {successStories.map((story) => (
-          <Grid item xs={12} sm={6} md={4} key={story.id} sx={{ display: "flex" }}>
-            <motion.div whileHover={{ scale: 1.05 }} style={{ width: "100%" }}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100%", // Ensures cards take up equal height
-                  boxShadow: 4,
-                  borderRadius: 3,
-                  p: 3,
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  background: "linear-gradient(145deg, #f3f4f6 0%, #ffffff 100%)",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: 6,
-                  },
-                }}
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+      <Box sx={{ py: 5, px: 3, textAlign: "center" }}>
+        <Typography
+          variant="h4"
+          sx={{ mb: 3, fontFamily: "'Nunito', sans-serif" }}
+        >
+          Explore Categories
+        </Typography>
+        {/* Horizontal Scrollable Container */}
+        <Box
+          sx={{
+            display: "flex", // Flex layout for horizontal alignment
+            flexWrap: "wrap",
+            overflowX: "auto", // Enable horizontal scrolling
+            gap: 2, // Add space between items
+            padding: 2, // Add padding for aesthetics
+            "&::-webkit-scrollbar": {
+              height: "6px", // Customize scrollbar height
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#888", // Scrollbar thumb color
+              borderRadius: "4px",
+            },
+          }}
+        >
+          {categories.map((category, index) => (
+            <Card
+              key={index}
+              elevation={1}
+              sx={{
+                width: "100px", // Fixed width
+                height: "80px", // Fixed height
+                display: "flex", // Flex layout for content alignment
+                flexWrap: "wrap",
+                flexDirection: "column", // Align icon and text vertically
+                alignItems: "center", // Center items horizontally
+                justifyContent: "center", // Center items vertically
+                textAlign: "center", // Center text alignment
+                padding: 1, // Inner padding
+                overflow: "hidden", // Ensure consistent sizing
+              }}
+            >
+              {/* Icon */}
+              <Box sx={{ color: "#3f51b5", fontSize: "20px", mb: 1 }}>
+                {category.icon}
+              </Box>
+              {/* Text */}
+              <Typography
+                variant="caption"
+                sx={{ fontSize: "10px", fontWeight: "bold" }}
               >
-                <CardContent sx={{ flexGrow: 1, textAlign: "center" }}>
-                  <Avatar
-                    src={story.image}
-                    alt={story.name}
-                    sx={{ width: 80, height: 80, borderRadius: "50%", mb: 2, boxShadow: 2 }}
-                  />
-                  <Typography variant="h6" color="primary" sx={{ fontWeight: 700 }}>
-                    {story.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" sx={{ color: "#666" }}>
-                    {story.role} at {story.company}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" sx={{ fontWeight: 500, color: "#3f51b5", mt: 1 }}>
-                    Package: {story.package}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      mt: 2,
-                      fontStyle: "italic",
-                      fontFamily: "Roboto, sans-serif",
-                      color: "#666",
-                    }}
-                  >
-                    "{story.quote}"
-                  </Typography>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-
-
-      
-
-      {/* Companies Hiring Section */}
-      <Typography
-        variant="h4"
-        gutterBottom
-        sx={{
-          fontFamily: "Poppins, sans-serif",
-          textAlign: "center",
-          color: "#3f51b5",
-          fontWeight: "bold",
-          textTransform: "uppercase",
-          letterSpacing: 1.5,
-          pb: 2,
-          "&:after": {
-            content: '""',
-            display: "block",
-            width: "50px",
-            height: "4px",
-            backgroundColor: "#3f51b5",
-            margin: "8px auto 0 auto",
-            borderRadius: 2,
-          },
-        }}
-      >
-        Companies Hiring
-      </Typography>
-      <Grid container spacing={4}>
-        {companies.map((company) => (
-          <Grid item xs={12} sm={6} md={3} key={company.id} sx={{ display: "flex" }}>
-            <motion.div whileHover={{ scale: 1.05 }} style={{ width: "100%" }}>
-              <Card
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  height: "100%", // Ensures cards take up equal height
-                  boxShadow: 4,
-                  borderRadius: 3,
-                  p: 3,
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  background: "linear-gradient(145deg, #f3f4f6 0%, #ffffff 100%)",
-                  "&:hover": {
-                    transform: "scale(1.05)",
-                    boxShadow: 6,
-                  },
-                }}
-              >
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Avatar
-                    src={company.logo}
-                    alt={company.name}
-                    sx={{ width: 80, height: 80, borderRadius: "50%", mb: 2, boxShadow: 2 }}
-                  />
-                  <Typography variant="h6" color="primary" sx={{ fontWeight: 700 }}>
-                    {company.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" sx={{ color: "#666" }}>
-                    {company.location}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
+                {category.title}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
+      </Box>
     </Container>
   );
 };
