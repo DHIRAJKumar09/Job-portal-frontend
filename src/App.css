@@ -1,54 +1,42 @@
-.App {
-  text-align: center;
-}
-body{
-  overflow-x: hidden;
- background-image: url("https://plus.unsplash.com/premium_vector-1722607826599-1a2e9cbd142b?q=80&w=1800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap');
-
 body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
   font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #FFE000, gray);
+  background-size: cover;
 }
 
 h3, h4 {
   font-family: 'Lobster', cursive;
 }
 
-.card-content {
-  transition: transform 0.3s ease-in-out;
-}
-
-.card-content:hover {
-  transform: scale(1.05);
-}
-body{
-  overflow-x: hidden;
-  backdrop-filter: "0.6";
-  background-image: url('https://cdn.pixabay.com/photo/2024/06/08/20/29/meeting-8817513_1280.jpg');
-/* sx={{
-  paddingTop: { xs: '70rem', sm: '35rem', md: '40rem' }, // Adjust padding for smaller screens
-}} */
-}
-.MuiCard-root {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease-in-out;
-}
-
-.MuiCard-root:hover {
-  transform: scale(1.05);
-}
-
-/* Style for the centered avatar and text in success stories */
-.success-story {
+/* Hero Section (App-header) */
+.App-header {
+  background-color: #282c34;
+  height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  z-index: 1;
+  position: relative; /* Ensures proper stacking context */
 }
+
+/* Video Background Fix */
+
+
+/* Premium Section */
+.appsection {
+  padding-top: 100px;
+  background-color: #f9f9f9;
+  z-index: 1;
+  position: relative;
+}
+
+/* Grid Background */
 .grid-background {
   position: fixed;
   top: 0;
@@ -62,8 +50,8 @@ body{
     ),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
-  pointer-events: none;
-  z-index: -1;
+  pointer-events: none; /* Prevent interaction */
+  z-index: 0; /* Ensure it doesn't overlap content */
 }
 
 .grid-background::before {
@@ -75,83 +63,43 @@ body{
   height: 100%;
   background: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.9));
 }
-.appsection{
-  padding-top: 100px;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-.static{
-  background: none;
-}
-.navbar-icon {
- /* Adjust space between icon and text */
-  font-size: 0.2rem; /* Adjust the font size of the text */
-}
-/* Custom horizontal scrollbar */
+
+
+
+
+
+
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
-  height: 8px; /* Set height for horizontal scrollbar */
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0; /* Background of the track */
-  border-radius: 40px; /* Rounded track edges */
+  background: #f0f0f0;
+  border-radius: 40px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888; /* Scrollbar thumb color */
-  border-radius: 40px; /* Rounded scrollbar thumb */
-  border: 2px solid #a71616; /* Space between thumb and track */
+  background-color: #888;
+  border-radius: 40px;
+  border: 2px solid #a71616;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Darken on hover */
+  background-color: #555;
 }
-/* For Firefox */
 
-/* Scrollbar styles for Firefox */
 * {
-  scrollbar-width: thin; /* Thin scrollbar */
-  scroll-behavior: smooth; /* Smooth scrolling */
-  scroll-padding: 5px; /* Padding for the scroll */
-  scrollbar-color: rgb(13, 13, 9) #a8caba; /* Thumb and track colors for Firefox */
-  
-
-
- 
-  
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scroll-padding: 5px;
+  scrollbar-color: rgb(13, 13, 9) #a8caba;
 }
 
-
-
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .App-header {
+    font-size: calc(8px + 2vmin);
   }
 }
