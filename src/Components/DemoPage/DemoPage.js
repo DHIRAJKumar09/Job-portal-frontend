@@ -51,7 +51,7 @@ const DemoPage = () => {
   return (
     <Container
       maxWidth="lg"
-      sx={{ paddingTop: { xs: "96rem", md: "80rem" } }}
+      sx={{ paddingTop: { xs: "180rem", sm:"118rem",md: "93rem", } }}
       disableGutters
     >
       {/* Hero Section */}
