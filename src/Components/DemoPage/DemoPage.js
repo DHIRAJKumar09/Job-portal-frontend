@@ -95,10 +95,10 @@ const DemoPage = () => {
             fontFamily: "'Nunito', sans-serif", // Apply Nunito font here
           }}
         >
-          <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold" }}>
+          <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold",color:"black" }}>
             Find your dream job now 5 lakh+ jobs for you to explore
           </Typography>
-          <Typography variant="h6" paragraph sx={{ mb: 4, fontSize: "1.2rem" }}>
+          <Typography variant="h6" paragraph sx={{ mb: 4, fontSize: "1.2rem",color:"black" }}>
             Join our platform to unlock exclusive career opportunities.
           </Typography>
           <Button

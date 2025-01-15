@@ -25,16 +25,10 @@ h3, h4 {
   position: relative; /* Ensures proper stacking context */
 }
 
-/* Video Background Fix */
 
 
-/* Premium Section */
-.appsection {
-  padding-top: 100px;
-  background-color: #f9f9f9;
-  z-index: 1;
-  position: relative;
-}
+
+
 
 /* Grid Background */
 .grid-background {
