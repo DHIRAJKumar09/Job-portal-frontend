@@ -55,14 +55,14 @@ const DemoPage = () => {
     
     <Container
       maxWidth="xl"
-      sx={{ paddingTop: { xs: "170rem", sm:"122rem",md: "90rem",lg:"96rem" } }}
+      sx={{ paddingTop: { xs: "220rem", sm:"162rem",md: "120rem",lg:"136rem" } }}
       disableGutters
      >
       {/* Hero Section */}
       <Box
         sx={{
           position: "relative",
-          width: "100vw",
+          width: "100%",
           height: "100vh", // Fullscreen height
           display:"flex",
          
@@ -80,10 +80,11 @@ const DemoPage = () => {
             position: "absolute",
             top: 0,
             left: 0,
-            width: "100%",
+            width:"100%",
             height: "100%",
             objectFit: "cover",
             zIndex: -1,
+            
           }}
         >
           <source src={video1} type="video/mp4" />
@@ -102,7 +103,7 @@ const DemoPage = () => {
           }}
         >
           <Typography variant="h4" sx={{ mb: 3, fontWeight: "bold", }}>
-            Find your dream job now 5 lakh+ jobs for you to explore
+           <span style={{fontSize:"80px",color:"purple",textShadow:"purple 0px 0px 40px ",WebkitTextStroke:"1px white"}}>F</span> ind <span style={{fontSize:"80px",color:"yellow",textShadow:"yellow 0px 0px 10px ",WebkitTextStroke:"2px white"}}>Y</span>our <span style={{fontSize:"80px",color:"Blue",textShadow:"blue 0px 0px 40px ",WebkitTextStroke:"1px white"}}>D</span>ream <span style={{fontSize:"80px",color:"green",textShadow:"white 0px 0px 40px ",WebkitTextStroke:"1px white"}}>J</span>ob <span style={{fontSize:"80px",color:"black",textShadow:"purple 0px 0px 40px ",WebkitTextStroke:"1px white"}}>N</span>ow 5 lakh+ jobs for you to explore
           </Typography>
           <Typography variant="h6" paragraph sx={{ mb: 4, fontSize: "1.2rem" }}>
             Join our platform to unlock exclusive career opportunities.
@@ -111,15 +112,15 @@ const DemoPage = () => {
             variant="contained"
             color="secondary"
             onClick={handleSignup}
-            sx={{ mr: 2, fontFamily: "'Roboto', sans-serif" }}
+            sx={{ mr: 2, fontFamily: "'Roboto', sans-serif",border:"2px solid white",boxShadow:"white 0px 0px 40px , purple 0px 0px 20px",background:"purple",color:"white",fontWeight:"bolder",fontSize:"20px" }}
           >
             Sign Up
           </Button>
           <Button
             variant="outlined"
-            color="inherit"
+            color="white"
             onClick={handleLogin}
-            sx={{ fontFamily: "'Roboto', sans-serif" }}
+            sx={{ mr: 2, fontFamily: "'Roboto', sans-serif",border:"2px solid white",boxShadow:"white 0px 0px 40px ,green 0px 0px 20px",background:"green",color:"white",fontWeight:"bolder",fontSize:"20px" }}
           >
             Login
           </Button>
@@ -196,7 +197,7 @@ const DemoPage = () => {
               🌟 "Your Dream Job Awaits!"
               Every great journey begins with a single step.
               </Typography>
-          <Grid container spacing={2}   >
+          <Grid container spacing={2}  >
          
             <Grid item xs={8} sx={{display:"flex",alignContent:"center",justifyContent:"center"}}>
               <video
@@ -240,7 +241,7 @@ const DemoPage = () => {
         >
           Why Choose Us?
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} >
           {[
             { title: "Job Search", image: "https://cdn.pixabay.com/photo/2020/02/07/14/22/dream-4827288_1280.jpg" },
             {
