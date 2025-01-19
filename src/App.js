@@ -93,7 +93,7 @@ function App() {
           </Box>
 
           {/* Conditionally Render Footer */}
-          {!token && <Footer />}
+          {/* {!token && <Footer />} */}
           <ToastContainer />
         </BrowserRouter>
       </PersistGate>
