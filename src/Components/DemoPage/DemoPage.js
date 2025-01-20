@@ -115,8 +115,8 @@ const YourApp = () => {
       {/* Sidebar */}
       <Box
         sx={{
-          width: "80px",
-
+         minWidth: "80px",
+           
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -149,7 +149,7 @@ const YourApp = () => {
         {/* Login and Signup Icons */}
         <Box
           sx={{
-            marginTop: "auto", // Push to the bottom of the sidebar
+            marginTop: "0", display:"flex",flexDirection:"column", // Push to the bottom of the sidebar
           }}
         >
           <IconButton onClick={handleLogin}>
@@ -246,57 +246,13 @@ const YourApp = () => {
         </Box>
 
         {/* Explore Categories */}
-        <Box sx={{ py: 5, px: 3, textAlign: "center" }}>
-          <Typography
-            variant="h4"
-            sx={{ mb: 3, fontFamily: "'Nunito', sans-serif" }}
-          >
-            Explore Categories
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 2,
-              justifyContent: "center",
-              px: 2,
-            }}
-          >
-            {categories.map((category, index) => (
-              <Card
-                key={index}
-                sx={{
-                  width: "150px",
-                  height: "150px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  padding: 1,
-                }}
-              >
-                <Box sx={{ color: "#3f51b5", fontSize: "20px", mb: 1 }}>
-                  {category.icon}
-                </Box>
-                <Typography
-                  variant="caption"
-                  sx={{ fontSize: "10px", fontWeight: "bold" }}
-                >
-                  {category.title}
-                </Typography>
-              </Card>
-            ))}
-          </Box>
-        </Box>
 
         {/* Main Content Section */}
         <Box
           sx={{
             py: 10,
             px: { xs: 2, md: 10 },
-         
-            
+
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -575,6 +531,124 @@ const YourApp = () => {
               </Grid>
             ))}
           </Grid>
+        </Box>
+
+        <Box
+          sx={{
+            py: 5,
+            px: 3,
+            textAlign: "center",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            alignItems:"center",
+            fontFamily: "'Roboto', sans-serif",
+          }}
+        >
+          {/* Section Heading */}
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 4,
+              fontWeight: "bold",
+              fontFamily: "'Roboto', sans-serif",
+              color: "#2c3e50",
+            }}
+          >
+            Explore Categories
+          </Typography>
+
+          {/* Categories Grid */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "nowrap", // Prevent wrapping for horizontal scroll
+             
+              position: "relative",
+              overflowX: "auto", // Enable horizontal scroll
+              maxWidth: "70vw", // Restrict maximum width of the parent box
+              gap: 4,
+              justifyContent: "center", // Align items to start for scrolling
+              alignItems:"center",
+              px: 2,
+              
+              scrollbarWidth: "none", // Styling for native scrollbar
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                backgroundColor: "#ccc",
+                borderRadius: "4px",
+              },
+              "&::-webkit-scrollbar-track": {
+                backgroundColor: "transparent",
+              },
+              
+            }}
+          >
+            {categories.map((category, index) => (
+              <Card
+                key={index}
+                sx={{
+                  flex: "0 0 auto", // Prevent cards from shrinking or growing unexpectedly
+                  minWidth: "120px", // Consistent size for cards
+                  height: "200px", // Adjust height as needed
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  textAlign: "center",
+                  padding: 2,
+                  borderRadius: 2,
+                  boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "white",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                  },
+
+                }}
+              >
+                {/* Icon */}
+                <Box
+                  sx={{
+                    color: "#3f51b5",
+                    fontSize: "30px",
+                    mb: 1,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {category.icon}
+                </Box>
+                {/* Title */}
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {category.title}
+                </Typography>
+                <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        marginTop: "10px",
+                        textTransform: "capitalize",
+                        borderRadius: "20px",
+                        fontFamily: "'Nunito', sans-serif",
+                      }}
+                    >
+                    Apply Now
+                    </Button>
+              </Card>
+            ))}
+          </Box>
         </Box>
       </Box>
     </Box>
