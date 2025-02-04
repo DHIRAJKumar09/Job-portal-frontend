@@ -113,6 +113,7 @@ const YourApp = () => {
         background: "linear-gradient(to bottom, #74ebd5, #acb6e5)",
       }}
     >
+      
       {/* Sidebar */}
       <Box
         sx={{
@@ -163,6 +164,8 @@ const YourApp = () => {
       </Box>
 
       {/* Main Content */}
+      
+      
       <Box
         sx={{
           flexGrow: 1,
@@ -177,24 +180,26 @@ const YourApp = () => {
           overflowY: "auto",
         }}
       >
-      <SearchAndApply/>
+
+   
         {/* Hero Section */}
-        {/* <Box
+        <Box
           sx={{
             position: "relative",
             width: "100%",
-            height: "100%",
+            height: "100vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
-            padding: "150px",
+            padding: "600px 100px 300px 100px",
 
             borderRadius: "10px",
             border: "2px solid white",
             mb: 5,
           }}
-        > */}
+        >
+        <SearchAndApply/>
           {/* Background Video */}
           {/* <video
             autoPlay
@@ -224,6 +229,7 @@ const YourApp = () => {
               fontFamily: "'Nunito', sans-serif",
             }}
           >
+      
             <Typography
               variant="h4"
               sx={{
@@ -245,7 +251,7 @@ const YourApp = () => {
               {/* Join our platform to unlock exclusive career opportunities. */}
             </Typography>
           </Box>
-        {/* </Box> */}
+        </Box>
 
         {/* Explore Categories */}
 
