@@ -58,7 +58,7 @@ function App() {
           {/* Conditionally Render Navbar for Logged-in Users */}
           {token && <Navbar />}
 
-          <Box className="appsection" sx={{ minHeight: '100vh', pt: token ? '64px' : '0' }}>
+          <Box className="appsection" sx={{ minHeight: '100vh', pt: token ? '5px' : '0' }}>
             <Routes>
               {/* Restricted DemoPage Route */}
               <Route path="/" element={<RestrictedDemoPage />} />

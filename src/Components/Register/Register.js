@@ -1,96 +1,138 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { registerUser } from '../../slices/authSlice';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './Register.css'; // Ensure your CSS file is named correctly
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../slices/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import CloseIcon from "@mui/icons-material/Close";
+import registerpage from '../../assets/Loginpage.png'
 
 const Register = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState('job-seeker'); // Default role
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState("job-seeker");
+  
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(registerUser({ username, email, password, role }))
-            .then((response) => {
-                if (response.payload.success) {
-                    toast.success("Hurray! Registration successful! 🎉");
-                    navigate("/login"); // Redirect to login page after successful registration
-                } else {
-                    toast.error("Registration failed. Please try again.");
-                }
-            })
-            .catch(() => {
-                toast.error("Registration failed! Please try again.");
-            });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerUser({ username, email, password, role }))
+      .then((response) => {
+        if (response.payload.success) {
+          toast.success("🎉 Registration Successful!");
+          navigate("/login");
+        } else {
+          toast.error("Registration failed. Please try again.");
+        }
+      })
+      .catch(() => {
+        toast.error("Registration failed! Please try again.");
+      });
+  };
 
-    return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <h2 className="auth-title">Create Account</h2>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        style={{ color: "black" }}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        className="auth-input"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        style={{ color: "black" }}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="auth-input"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        style={{ color: "black" }}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="auth-input"
-                    />
+  return (
+    <div className="flex min-h-screen bg-gray-100">
+      <div className="w-1/2 bg-white flex justify-center items-center relative">
+        <IconButton
+          onClick={() => navigate("/")}
+          className="absolute top-3 right-3"
+        >
+          <CloseIcon />
+        </IconButton>
 
-                    {/* Role Selection as Buttons */}
-                    <div className="role-selection">
-                        <button
-                            type="button"
-                            onClick={() => setRole('job-seeker')}
-                            className={`role-button ${role === 'job-seeker' ? 'active' : ''}`}
-                        >
-                            I'm looking for job
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => setRole('employer')}
-                            className={`role-button ${role === 'employer' ? 'active' : ''}`}
-                        >
-                            I'm looking to hire
-                        </button>
-                    </div>
+        {/* Registration Form */}
+        <form onSubmit={handleSubmit} className="space-y-5 w-3/4">
+          <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
+            Create an Account
+          </h2>
+          <TextField
+            label="Username"
+            type="text"
+            fullWidth
+            variant="outlined"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            fullWidth
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    edge="end"
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <div className="flex justify-between gap-4">
+            <Button
+              variant={role === "job-seeker" ? "contained" : "outlined"}
+              color="primary"
+              fullWidth
+              className="p-3 rounded-lg"
+              onClick={() => setRole("job-seeker")}
+            >
+              Looking for Job
+            </Button>
+            <Button
+              variant={role === "employer" ? "contained" : "outlined"}
+              color="secondary"
+              fullWidth
+              className="p-3 rounded-lg"
+              onClick={() => setRole("employer")}
+            >
+              Hiring Talent
+            </Button>
+          </div>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            fullWidth
+            className="p-3 text-lg"
+          >
+            Register
+          </Button>
+        </form>
+      </div>
 
-                    <button type="submit" className="auth-button">Register</button>
-                </form>
-
-                {/* Already have an account? Link to login */}
-                <div className="auth-footer">
-                    <p>Already have an account? <a href="/login" className="auth-link">Go to Login</a></p>
-                </div>
-            </div>
-        </div>
-    );
+      {/* Image Section */}
+      <div
+        className="w-1/2 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${registerpage})`,
+        }}
+      />
+    </div>
+  );
 };
 
 export default Register;

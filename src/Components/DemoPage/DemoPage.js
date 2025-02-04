@@ -177,7 +177,7 @@ const YourApp = () => {
         }}
       >
         {/* Hero Section */}
-        <Box
+        {/* <Box
           sx={{
             position: "relative",
             width: "100%",
@@ -192,9 +192,9 @@ const YourApp = () => {
             border: "2px solid white",
             mb: 5,
           }}
-        >
+        > */}
           {/* Background Video */}
-          <video
+          {/* <video
             autoPlay
             loop
             muted
@@ -207,10 +207,10 @@ const YourApp = () => {
               objectFit: "cover",
               zIndex: 1,
             }}
-          >
-            <source src={video1} type="video/mp4" />
+          > */}
+            {/* <source src={video1} type="video/mp4" />
             Your browser does not support the video tag.
-          </video>
+          </video> */}
 
           {/* Overlay Content */}
           <Box
@@ -243,7 +243,7 @@ const YourApp = () => {
               {/* Join our platform to unlock exclusive career opportunities. */}
             </Typography>
           </Box>
-        </Box>
+        {/* </Box> */}
 
         {/* Explore Categories */}
 

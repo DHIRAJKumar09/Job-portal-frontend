@@ -1,98 +1,116 @@
-import React, { useState } from 'react';
-import { loginUser } from '../../slices/authSlice';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
-import './Login.css';
+import React, { useState } from "react";
+import { loginUser } from "../../slices/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { InputAdornment } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import loginimg from '../../assets/Loginpage.png'; // Your imported image
 
 const Login = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        // Basic validation
-        if (!email || !password) {
-            toast.error('Please fill out all fields');
-            return;
+    if (!email || !password) {
+      toast.error("Please fill out all fields");
+      return;
+    }
+
+    setLoading(true);
+
+    dispatch(loginUser({ email, password }))
+      .then((response) => {
+        setLoading(false);
+        if (response.payload.success) {
+          toast.success("Hurray! Login successful! 🎉");
+          navigate(response.payload.role === "employer" ? "/employer/dashboard" : "/home");
+        } else {
+          toast.error("Login failed. Please check your credentials.");
         }
+      })
+      .catch(() => {
+        setLoading(false);
+        toast.error("Login failed. Please try again.");
+      });
+  };
 
-        // Show loading
-        setLoading(true);
+  return (
+    <div className="flex min-h-screen bg-gray-100">
+      {/* Left side with Login form */}
+      <div className="w-full sm:w-1/2 bg-white flex justify-center items-center relative p-6 sm:p-8">
+        <IconButton
+          onClick={() => navigate("/")}
+          className="absolute top-3 right-3"
+        >
+          <CloseIcon />
+        </IconButton>
 
-        // Dispatch login
-        dispatch(loginUser({ email, password }))
-            .then((response) => {
-                setLoading(false);
-                if (response.payload.success) {
-                    toast.success('Hurray! Login successful! 🎉');
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-5 w-full sm:w-3/4">
+          <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6">
+            Login to Your Account
+          </h2>
+          <TextField
+            label="Email"
+            type="email"
+            fullWidth
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            fullWidth
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            fullWidth
+            disabled={loading}
+            className="py-2"
+          >
+            {loading ? <CircularProgress size={24} /> : "Login"}
+          </Button>
+        </form>
+      </div>
 
-                    const role = response.payload.role;
-                    // Navigate based on user role
-                    if (role === 'employer') {
-                        navigate('/employer/dashboard');  // Redirect employer to job posting page
-                    } else if (role === 'job-seeker') {
-                        navigate('/home');  // Redirect job-seeker to home or another relevant page
-                    }
-                } else {
-                    toast.error('Login failed. Please check your credentials.');
-                }
-            })
-            .catch((error) => {
-                setLoading(false);
-                toast.error('Login failed. Please try again.');
-            });
-    };
-
-    return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <h2 className="auth-title">Login to Your Account</h2>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="auth-input"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="auth-input"
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        type="submit"
-                        className="auth-button"
-                        disabled={loading}
-                    >
-                        {loading ? <CircularProgress size={24} /> : 'Login'}
-                    </Button>
-                </form>
-
-                <div className="auth-links">
-                    <p>
-                        Don't have an account? <a href="/register" className="auth-link">Create Account</a>
-                    </p>
-                    <p>
-                        <a href="/forgot-password" className="auth-link">Forgot Password?</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
+      {/* Image Section with the imported loginimg */}
+      <div
+        className="hidden sm:block w-1/2 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${loginimg})`, // Use the imported image here
+        }}
+      />
+    </div>
+  );
 };
 
 export default Login;

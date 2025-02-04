@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Button, TextField, MenuItem, Select, Typography, Box, CircularProgress } from '@mui/material';
 import { createJob } from '../../slices/JobSlice';
-import './JobPost.css';
 
 const JobPostForm = () => {
     const dispatch = useDispatch();
@@ -56,12 +55,12 @@ const JobPostForm = () => {
     };
 
     return (
-        <Box className="job-post-container" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-            <Box className="job-post-card" sx={{ maxWidth: 600, width: '100%', padding: 4, boxShadow: 3, borderRadius: 2 }}>
-                <Typography variant="h4" gutterBottom align="center" color="primary">
+        <Box className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+            <Box className="w-full max-w-2xl p-8 bg-white shadow-2xl rounded-lg">
+                <Typography variant="h4" gutterBottom align="center" className="mb-6 text-3xl font-semibold text-blue-700">
                     Post a New Job
                 </Typography>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <TextField
                         label="Job Title"
                         name="title"
@@ -70,6 +69,9 @@ const JobPostForm = () => {
                         fullWidth
                         required
                         margin="normal"
+                        variant="outlined"
+                        className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                        sx={{ '& .MuiInputLabel-root': { fontWeight: 'bold', fontSize: '1rem' } }}
                     />
                     <TextField
                         label="Company"
@@ -79,6 +81,9 @@ const JobPostForm = () => {
                         fullWidth
                         required
                         margin="normal"
+                        variant="outlined"
+                        className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                        sx={{ '& .MuiInputLabel-root': { fontWeight: 'bold', fontSize: '1rem' } }}
                     />
                     <TextField
                         label="Job Description"
@@ -90,6 +95,9 @@ const JobPostForm = () => {
                         multiline
                         rows={4}
                         margin="normal"
+                        variant="outlined"
+                        className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                        sx={{ '& .MuiInputLabel-root': { fontWeight: 'bold', fontSize: '1rem' } }}
                     />
                     <TextField
                         label="Salary"
@@ -100,6 +108,9 @@ const JobPostForm = () => {
                         fullWidth
                         required
                         margin="normal"
+                        variant="outlined"
+                        className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                        sx={{ '& .MuiInputLabel-root': { fontWeight: 'bold', fontSize: '1rem' } }}
                     />
                     <TextField
                         label="Location"
@@ -109,6 +120,9 @@ const JobPostForm = () => {
                         fullWidth
                         required
                         margin="normal"
+                        variant="outlined"
+                        className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                        sx={{ '& .MuiInputLabel-root': { fontWeight: 'bold', fontSize: '1rem' } }}
                     />
                     <Box mt={2}>
                         <Select
@@ -119,6 +133,14 @@ const JobPostForm = () => {
                             required
                             displayEmpty
                             renderValue={(selected) => (selected ? selected : 'Select Category')}
+                            className="rounded-lg focus:ring-2 focus:ring-blue-500"
+                            sx={{
+                                '& .MuiSelect-root': {
+                                    padding: '10px 14px',
+                                    fontWeight: 'bold',
+                                    fontSize: '1rem',
+                                },
+                            }}
                         >
                             <MenuItem value="IT">IT</MenuItem>
                             <MenuItem value="Health">Health</MenuItem>
@@ -127,13 +149,15 @@ const JobPostForm = () => {
                             <MenuItem value="Design">Design</MenuItem>
                         </Select>
                     </Box>
-                    <Box mt={2} display="flex" justifyContent="center">
+
+                    <Box mt={4} className="flex justify-center">
                         <Button
                             variant="contained"
                             color="primary"
                             type="submit"
                             disabled={loading}
                             startIcon={loading && <CircularProgress size={20} color="inherit" />}
+                            className="rounded-full px-8 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-teal-500"
                         >
                             {loading ? 'Posting...' : 'Post Job'}
                         </Button>
