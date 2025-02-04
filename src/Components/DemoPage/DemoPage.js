@@ -41,6 +41,7 @@ import { useNavigate } from "react-router-dom";
 import video1 from "../../assets/Hello.mp4";
 import video2 from "../../assets/video Mobile Video.mp4";
 import workimg1 from "../../assets/workimg.png";
+import SearchAndApply from "./SearchAndApply";
 
 const topics = [
   {
@@ -176,6 +177,7 @@ const YourApp = () => {
           overflowY: "auto",
         }}
       >
+      <SearchAndApply/>
         {/* Hero Section */}
         {/* <Box
           sx={{
